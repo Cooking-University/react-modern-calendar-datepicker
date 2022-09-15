@@ -29,10 +29,13 @@
 }
 
 .DatePicker__calendarContainer {
-  position: absolute;
-  top: calc(100% + 20px);
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed;
+  top:null;
+  left:null;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: auto;
+  box-shadow: 0 1em 4em rgba(0, 0, 0, 0.07);
 }
 
 .DatePicker__calendarContainer.-top {
@@ -73,7 +76,6 @@
   --cl-color-error: #ff2929;
   font-size: 10px;
   background: #fff;
-  box-shadow: 0 1em 4em rgba(0, 0, 0, 0.07);
   border-radius: 1em;
   position: relative;
   user-select: none;
@@ -106,7 +108,6 @@
   background: transparent;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  outline: none;
 }
 
 .Calendar__header {
@@ -125,7 +126,7 @@
   border: none;
   z-index: 1;
   opacity: 1;
-  transition: 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 .Calendar__monthArrowWrapper:focus {
@@ -159,7 +160,7 @@
 
 .Calendar__monthArrow {
   border-radius: 50%;
-  transition: var(--animation-duration) transform;
+  transition: transform var(--animation-duration);
   pointer-events: none;
   background-repeat: no-repeat;
   display: block;
@@ -186,7 +187,7 @@
   will-change: transform, opacity;
   backface-visibility: hidden;
   transform: translateZ(0);
-  transition: var(--animation-duration);
+  transition: opacity var(--animation-duration), transform var(--animation-duration);
   line-height: 1;
 }
 
@@ -222,7 +223,7 @@
 .Calendar__monthYear > * {
   padding: 0.2em 0.5em;
   border: 1px solid transparent;
-  transition: var(--animation-duration);
+  transition: transform var(--animation-duration);
   font-size: 1.05em;
   display: flex;
   justify-content: center;
@@ -246,9 +247,13 @@
 }
 
 .Calendar__monthYear.-shown > *:hover,
-.Calendar:not(.-noFocusOutline) .Calendar__monthYear.-shown > *:focus,
 .Calendar__monthYear > *.-activeBackground {
   background: #f5f5f5;
+}
+
+.Calendar:not(.-noFocusOutline) .Calendar__monthYear.-shown > *:focus {
+  outline: 1px dashed rgba(0, 0, 0, 0.4);
+  outline-offset: 2px;
 }
 
 .Calendar__monthText:hover {
@@ -322,7 +327,7 @@
   background-color: #fff;
   transform: translateY(-150%);
   will-change: transform;
-  transition: 0.6s;
+  transition: transform 0.6s;
   height: 100%;
 }
 
@@ -418,12 +423,18 @@
   border-radius: 8.5px;
   font-size: 1.3em;
   min-width: 70%;
-  transition: 0.3s;
+  transition: opacity 0.3s, transform 0.3s;
 }
 
 .Calendar__monthSelectorItem:not(.-active) .Calendar__monthSelectorItemText:not(:disabled):hover,
 .Calendar__yearSelectorItem:not(.-active) .Calendar__yearSelectorText:not(:disabled):hover {
   background: #f5f5f5;
+}
+
+.Calendar__monthSelectorItem:not(.-active) .Calendar__monthSelectorItemText:not(:disabled):hover,
+.Calendar__yearSelectorItem:not(.-active) .Calendar__yearSelectorText:not(:disabled):hover {
+  outline: 1px dashed rgba(0, 0, 0, 0.4);
+  outline-offset: 2px;
 }
 
 .Calendar__monthSelectorItemText:disabled,
@@ -516,7 +527,7 @@
   padding: calc(0.25em - 1px) 0;
   font-size: 1.6em;
   border-radius: 50%;
-  transition: 0.2s;
+  transition: background 0.2s, transform 0.2s, opacity 0.2s;
   border: 1px solid transparent;
   margin-bottom: 0.3em;
   color: rgba(0, 0, 0, 0.8);
@@ -617,7 +628,7 @@
   left: 50%;
   opacity: 0.5;
   transform: translateX(-50%);
-  transition: 0.2s;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 .Calendar__day.-today:hover:not(.-selectedStart):not(.-selectedEnd):not(.-selectedBetween)::after {
@@ -646,7 +657,7 @@
   }
 }
 
-@keyframes fadeArrowFlipped {
+@keyframes fadeArrowFlippedTop {
   from {
     opacity: 0;
   }
@@ -654,6 +665,28 @@
   to {
     opacity: 1;
     transform: translateY(0) rotate(180deg);
+  }
+}
+
+@keyframes fadeArrowFlippedLeft {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
+@keyframes fadeArrowFlippedRight {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(270deg);
   }
 }
 
