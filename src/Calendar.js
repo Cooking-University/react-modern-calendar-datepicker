@@ -44,9 +44,9 @@ const Calendar = ({
       /* istanbul ignore else */
       if (key === 'Tab') element.classList.remove('-noFocusOutline');
     };
-    element.addEventListener('keyup', handleKeyUp, false);
+    calendarElement.current?.addEventListener('keyup', handleKeyUp, false);
     return () => {
-      element && element.removeEventListener('keyup', handleKeyUp, false);
+      calendarElement.current?.removeEventListener('keyup', handleKeyUp, false);
     };
   });
 
