@@ -16,18 +16,18 @@ export const PERSIAN_MONTHS = [
 ];
 
 export const GREGORIAN_MONTHS = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
+  'Janvier',
+  'Février',
+  'Mars',
+  'Avril',
+  'Mai',
+  'Juin',
+  'Juillet',
+  'Août',
+  'Septembre',
+  'Octobre',
+  'Novembre',
+  'Décembre',
 ];
 
 export const PERSIAN_WEEK_DAYS = [
@@ -64,32 +64,32 @@ export const PERSIAN_WEEK_DAYS = [
 
 export const GREGORIAN_WEEK_DAYS = [
   {
-    name: 'Sunday',
-    short: 'S',
+    name: 'Dimanche',
+    short: 'D',
     isWeekend: true,
   },
   {
-    name: 'Monday',
+    name: 'Lundi',
+    short: 'L',
+  },
+  {
+    name: 'Mardi',
     short: 'M',
   },
   {
-    name: 'Tuesday',
-    short: 'T',
+    name: 'Mercredi',
+    short: 'M',
   },
   {
-    name: 'Wednesday',
-    short: 'W',
+    name: 'Jeudi',
+    short: 'J',
   },
   {
-    name: 'Thursday',
-    short: 'T',
+    name: 'Vendredi',
+    short: 'V',
   },
   {
-    name: 'Friday',
-    short: 'F',
-  },
-  {
-    name: 'Saturday',
+    name: 'Samedi',
     short: 'S',
     isWeekend: true,
   },
